@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="actionText">#303133</color>
+    <color name="actionSubText">#909399</color>
+    <color name="space_color">#ebedf0</color>
+</resources>
