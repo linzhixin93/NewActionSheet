@@ -25,6 +25,6 @@ class MainActivity : AppCompatActivity() {
                 ActionOption("wwww"),
                 ActionOption("qqq", leftIcon = R.drawable.default_user)
             )
-        }.show(view.rootView)
+        }.show(this)
     }
 }
