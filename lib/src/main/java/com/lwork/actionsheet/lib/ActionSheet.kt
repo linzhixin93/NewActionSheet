@@ -26,6 +26,8 @@ class ActionSheet {
 
     lateinit var optionList: List<ActionOption>
 
+    var actionTitle : ActionTitle ?= null
+
     var actionListener: IOnActionClickListener? = null
 
     var cancelText = "取消"
@@ -42,9 +44,22 @@ class ActionSheet {
             }
         }
         val optionLayout = contentView.findViewById<LinearLayout>(R.id.action_sheet_option_ll)
+
+        actionTitle?.let {
+            optionLayout.addView(
+                it.buildOptionView(activity, true),
+                LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    if (it.actionStyle.height != 0)
+                        it.actionStyle.height
+                    else
+                        activity.resources.getDimensionPixelSize(if (it.leftIcon == null) R.dimen.default_height else R.dimen.default_height)
+                )
+            )
+        }
         optionList.forEachIndexed { index, actionOption ->
             optionLayout.addView(
-                actionOption.buildOptionView(activity, index == 0).apply {
+                actionOption.buildOptionView(activity, index == 0 && actionTitle == null).apply {
                     setOnClickListener {
                         popupWindow.dismiss()
                         actionListener?.onActionClick(actionOption, index)

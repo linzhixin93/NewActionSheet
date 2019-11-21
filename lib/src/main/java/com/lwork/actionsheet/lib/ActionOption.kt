@@ -15,7 +15,7 @@ import androidx.core.content.ContextCompat
  * description：
  **/
 
-class ActionOption(
+open class ActionOption constructor(
     val text: String? = null,
     var subText: String? = null,
     var leftIcon: Int? = null,
@@ -24,7 +24,7 @@ class ActionOption(
 ) {
 
 
-    fun buildOptionView(context : Context, topCornerBg : Boolean) : View {
+    open fun buildOptionView(context : Context, topCornerBg : Boolean) : View {
         return if (leftIcon == null) {
             buildTextOptionView(context).apply {
                 setBackgroundResource(if (topCornerBg) R.drawable.top_border_item_bg else R.drawable.normal_item_bg)
